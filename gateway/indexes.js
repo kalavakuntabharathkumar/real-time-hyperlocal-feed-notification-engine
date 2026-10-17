@@ -1,0 +1,1 @@
+const {MongoClient}=require('mongodb');(async()=>{const c=new MongoClient(process.env.MONGO_URI||'mongodb://localhost:27017');await c.connect();const x=c.db('hyperlocal').collection('feed');await x.createIndex({userId:1,createdAt:-1});await x.createIndex({city:1,category:1,createdAt:-1});console.log(await x.indexes());await c.close()})();
